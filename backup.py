@@ -16,4 +16,14 @@ def backup():
     except AssertionError:
         return False
     
+    arq_backup = open('./Pendrive/backup.parm')
+    lista_arquivos = arq_backup.read().splitlines()
+    
+    for arq in lista_arquivos:
+        try:
+            assert os.path.exists(f'./Pendrive/{arq}') == True
+            assert os.path.exists(f'./HD/{arq}') == True
+        except AssertionError:
+            return False
+    
     return True
